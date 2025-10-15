@@ -1,0 +1,32 @@
+
+# index.html
+This is entry point for our app. Which includes main.tsx file from src folder
+here delete -
+<link rel="icon" type="image/svg+xml" href="/vite.svg" />   //we don't want vite svg
+
+If you want your icon, you can put in public folder and replace in above.
+in public folder delete this vite.svg
+
+# assets
+delete react.svg as we don't need this
+
+# Diffrence b/w public and asset folder
+if you have assets that nedds to be bundled someway - minify them, bundle them - then put them inside asset folder.
+If you have assets that doen't require any processing - then you can put them in public folder and these are going to be copied over to your build.
+
+# src/index.css
+we can delete everything here inside this file
+
+# src/app.css 
+delete this file entirely
+
+# src/App.tsx 
+Delete everything and add -
+
+function App() {
+  return (
+   <div>Hello</div>
+  )
+}
+export default App
+
