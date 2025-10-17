@@ -1,5 +1,5 @@
 
-# rewrite commit history 
+# rewrite commit history - merging 2 or more commits in one single commit #
 I have pushed 2 commits in github. want to merge them in 1 commit only so my commit history will look clean.
 
 Step 1 -
@@ -18,7 +18,7 @@ Step 3- now press i to enter insert mode
 
 Step 4- Now press f and then just press delete btn 4 times (it will delete pick word from second line) 
 pick b7abe9a path alias setup done
-squash c38fbc2 some more changes in path alias   //replaced pick with squash or simply do nothing
+squash c38fbc2 some more changes in path alias   //replaced pick with squash or simply do nothing just delete pick word
 
 Step 5- Press Esc to leave insert mode
 
@@ -28,3 +28,5 @@ step 8 -optional - if something went wrong
  git rebase --abort
 Step 9- if all good
 git push --force-with-lease
+
+Stpe 10- check git commit - both are merged in one with first commit message being picked automatically.
