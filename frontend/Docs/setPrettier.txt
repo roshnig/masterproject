@@ -1,0 +1,6 @@
+# set prettier - not done this yet
+
+https://www.youtube.com/watch?v=cchqeWY0Nak
+
+npm i -D prettier eslint-config-prettier eslint-plugin-prettier
+
