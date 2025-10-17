@@ -76,6 +76,7 @@ Now run -
 npm run lint //check issues in prettier and linting as we merged prettier in eslint.config file
 npm run lint:fix  //to fix and format
 npm run check:format   //Check if files are formatted (CI safe)
+npm run format  // to format
 
 Step 6 - add .prettierignore file to skip formatting for certain files/folders.
 This tells Prettier what not to format. It's like .gitignore, but for Prettier.
@@ -87,6 +88,14 @@ build
 coverage
 *.log
 .env
+
+
+******* setup prettier in vscode *******
+install prettier - code formatter extention
+
+ctrl + shift + P --> here search 'open user settings (json)' --> in this file add -
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+Now click on bottom settings btn --> settings --> click on format on save here
 
 
 
