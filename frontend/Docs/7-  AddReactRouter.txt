@@ -20,6 +20,8 @@ Step 5- Now create a routes.tsx file inside our src folder. this file going to h
 It will also have default for unknown paths.
 
 Step 7 - in app.tsx file, add this AppRoutes. 
+
+Step 8 - In main.tsx, warp app with <BrowserRouter>
  
  So main.tsx contains <App>
  and <App> contains app routes.
