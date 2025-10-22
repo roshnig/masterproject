@@ -47,3 +47,7 @@ export default defineConfig({
   }
 }
 
+// In index.html, change title and logo to display inside browser tab
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <title>MyApp</title>
+Add your logo in public folder.

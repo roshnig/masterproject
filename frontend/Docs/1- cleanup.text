@@ -4,8 +4,12 @@ This is entry point for our app. Which includes main.tsx file from src folder
 here delete -
 <link rel="icon" type="image/svg+xml" href="/vite.svg" />   //we don't want vite svg
 
-If you want your icon, you can put in public folder and replace in above.
-in public folder delete this vite.svg
+If you want your icon, you can put in public folder and replace in above link instead of deleteing it .
+in public folder delete this vite.svg and add your own logo.png
+<link rel="icon" type="image/png" href="/logo.png" />
+
+Change Title to whatever you want. It will display in browser tab name. and browser tab will have your own logo if added 
+in above link.
 
 # assets
 delete react.svg as we don't need this
