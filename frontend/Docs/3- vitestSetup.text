@@ -18,7 +18,7 @@ npm install -D vitest jsdom @testing-library/react @testing-library/jest-dom @te
     "vitest": "^3.2.4"
 }
 
-# create a file inside src --> add a new file setupTests.ts
+# create a file inside src/tests --> add a new file setupTests.ts
 
 # create a vitest.config.ts file in route (optional, we can add this configuration in vite.config.ts as well if don't want
   to add sepearte file).
@@ -42,3 +42,12 @@ npm install -D vitest jsdom @testing-library/react @testing-library/jest-dom @te
 
 # add coverage folder inside gitignore and with other build/test ignore files
    coverage/
+
+
+************** Optional - Add src/tests/ test-utils file **************
+when we have router, theme providers etc. we will require a utils file for tests.
+otherwise tests will fail. here we will setup 
+- MemoryRouter (instead of Browser Router used in main.tsx, need to use it in tests). it matches BrowserRouter in main.tsx
+- wraps components in theme context (Appthemeprovider) so light/dark mode works in tests.
+- mockNavigate allows you to verify calls to useNavigate
+- supports setting an initial route via route option

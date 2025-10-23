@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "./src/setupTests.ts",
+    setupFiles: "./src/tests/setupTests.ts",
     include: ["src/**/*.{test,spec}.{js,ts,jsx,tsx}"],
     // exclude: ['node_modules', 'dist', 'coverage', '.git'],
     coverage: {
@@ -15,7 +15,7 @@ export default defineConfig({
         "node_modules/",
         "dist/",
         "coverage/",
-        "src/setupTests.ts",
+        "src/tests/setupTests.ts",
         "./eslint.config.ts",
         "./vite.config.ts",
         "./vitest.config.ts",
