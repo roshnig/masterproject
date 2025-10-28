@@ -7,7 +7,6 @@
   "arrowParens": "always",
   "bracketSameLine": false,
   "jsxSingleQuote": true,
-  "proseWrap": "always",
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
   "requirePragma": false,
