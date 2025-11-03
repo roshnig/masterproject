@@ -1,0 +1,19 @@
+For Production, we are using nginx server in prod docker image. In dev we use default node server available in our
+local machine. so if there is something that is working in dev mode but in prod mode it is not working then we can fix issues for production in -
+
+Nginx.conf file -
+
+- If issue is about routing then fix here (react outer needs fallback path)
+  location / {
+  try_files $uri $uri/ /index.html;
+  }
+- static assets return 404 - fix nginx asset path configuration (dev server serves diffrently)
+- CORS /wrong api url - fix Nginx proxy rules (dev server proxies diffrently)
+
+What to review besides Nginx -
+1- vite.config.ts - path and build settings differ from dev
+2- .env.production - API endpoints must be embedded at build (in dev, we use localhost)
+VITE_API_URL=https://domain.com/api
+then use it in code like -
+const baseUrl = import.meta.env.VITE_API_URL;
+3- Dockerfile - ensure correct build enviornment

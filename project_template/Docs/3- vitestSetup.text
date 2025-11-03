@@ -1,0 +1,53 @@
+
+# Test setup
+https://www.youtube.com/watch?v=cchqeWY0Nak
+
+https://www.youtube.com/watch?v=U24H2mLwhgc   
+
+https://vitest.dev/guide/
+
+npm install -D vitest jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event @vitest/covergae-v8
+
+"devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",  // not install 
+    "jsdom": "^27.0.0",
+    "vitest": "^3.2.4"
+}
+
+# create a file inside src/tests --> add a new file setupTests.ts
+
+# create a vitest.config.ts file in route (optional, we can add this configuration in vite.config.ts as well if don't want
+  to add sepearte file).
+  Here you can define which files you want to include or exclude for tests.
+  v8 coverage reporter as well
+  
+# in tsconfig.json and in tsconfig.app.json file, add compiler types-
+  "compilerOptions": {
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
+  }
+# add test script in package.json file
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"   //npm run test:coverage to see the coverage
+    "test:ui": "vitest --ui"  //if already installed "@vitest/ui": "^3.2.4",
+    
+# If want to see test coverage in browser, then in file explorer , open your frontend project folder --> coverage -->
+ click index.html. here you will see coverage report in browser
+
+# add coverage folder inside gitignore and with other build/test ignore files
+   coverage/
+
+
+************** Optional - Add src/tests/ test-utils file **************
+when we have router, theme providers etc. we will require a utils file for tests.
+otherwise tests will fail. here we will setup 
+- MemoryRouter (instead of Browser Router used in main.tsx, need to use it in tests). it matches BrowserRouter in main.tsx
+- wraps components in theme context (Appthemeprovider) so light/dark mode works in tests.
+- mockNavigate allows you to verify calls to useNavigate
+- supports setting an initial route via route option

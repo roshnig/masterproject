@@ -1,0 +1,29 @@
+Step 1- Using library mode only not framework mode
+npm install react-router
+
+Step 2 - created 3 folders inside components -
+ui - here all custom buttons, input components will be there which are reuasable across components.
+layout - here we will have all layout related components
+navigation - components which are specific to app navigation like - tabs, breadcrubs etc
+
+Inside layout created Header, footer folder with related stuff
+
+Step 3- created a pages folder inside source. added page for login, home and other pages will go here.
+Also added not found page here for non existing routes
+
+Step 4- Created a new folder inside src folder layouts. here created 2 files for layout - we can add role specific layouts here.
+but for now just using Layout.tsx containing all routes for our app.
+so if we are using layout only, here outlet is kind of place holder where the route from routes.tsx will be rendered.
+Header and footer will be common for all pages
+
+Step 5- Now create a routes.tsx file inside our src folder. this file going to have all our app routes.
+It will also have default for unknown paths.
+
+Step 7 - in app.tsx file, add this AppRoutes. 
+
+Step 8 - In main.tsx, warp app with <BrowserRouter>
+ 
+ So main.tsx contains <App>
+ and <App> contains app routes.
+ routes.tsx takes layout as element.
+ layout has outlet to display route contents.

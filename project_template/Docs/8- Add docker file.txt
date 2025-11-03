@@ -1,0 +1,85 @@
+Add Dockerfile and .dockerignore file in main dir
+
+*********** Docker file ***************
+OPTION 1- 
+NOTE - this will work in create react app but if created using vite, start script is not there in pkg.json
+       so this will not work.
+
+FROM node:lts-alpine   //use latest node image or use node:20-alpine
+
+WORKDIR /app    //dir inside our image where we will copy things
+COPY package.json .  //copy pkg json into route of above workdir
+
+RUN npm install  //it will download all the packages inside workdir 
+COPY . . //copy everything from our codebase . to image dir .
+
+CMD ['npm', 'start']
+
+we are copying 2 times - pkg json and everything else seperately because docker works in layers and if the layer
+didn't changed since the last build it will use caching. As we know npm install takes most time so if no dependency
+has been changed in package.json, it will not run - RUN npm install command. You will just copy your new code into
+your image and starting it. So first time when you build image, it will take time but later it will be very fast.
+This is the reason, we are not copying everything in one command.
+
+Option 2- For VITE
+
+# Stage 1: Base (common setup)
+FROM node:20-alpine AS base
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+
+# Stage 2: Development (hot reload)
+FROM base AS dev
+COPY . .
+EXPOSE 5173
+ENV CHOKIDAR_USEPOLLING=true
+CMD ["npm", "run", "dev"]
+
+# Stage 3: Production build
+FROM base AS build
+COPY . .
+RUN npm run build
+
+# Stage 4: Production server (Nginx)
+FROM nginx:alpine AS prod
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+NOTE - in production we just have plain minified code. No server like node there. so we use nginx web server for 
+       prod image
+
+**************** docker-compose.yml file in route of master project ******************
+docker compose up --build  // in terminal
+
+it is working fine for prod // in docker-compose.yml line 8 target is prod
+but not working in dev mode.
+
+***** .dockerignore ******
+Add all the files and folders which are not required to be copied in workdir / image dir
+
+node_modules
+
+
+********** build image *********
+In terminal
+
+docker images  //will show all images
+docker system prune -a  //will remove all existing images in machine - fix memory issue
+
+run image in dev mode - need extra setup - so not working
+docker build -t masterproject-dev --target dev -f frontend/Dockerfile ./frontend
+docker run -p 5173:5173 -v ${PWD}/frontend:/app masterproject-dev
+
+run image in prod mode -
+docker build -t masterproject-prod --target prod -f frontend/Dockerfile ./frontend
+docker run -p 3000:80 masterproject-prod
+
+OR Run using docker compose -
+docker compose up // use if Just coding (dev mode, hot reload)	
+docker compose up --build // Use If Changed Dockerfile or dependencies
+docker compose build --no-cache && docker compose up //Force full rebuild
+
+
+

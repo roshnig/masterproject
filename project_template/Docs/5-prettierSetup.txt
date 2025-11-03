@@ -1,0 +1,103 @@
+
+ESLINT - we already have these in starting project by default -
+{
+    "@eslint/js": "^9.36.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+}
+
+step 1- install prettier + eslint integration
+
+npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+ 
+ new dev depe
+ {
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
+ }
+
+ STEP 2- Create prettier config - Create a .prettierrc file to customize formatting
+  in terminal 
+ touch .prettierrc   //new file will be added in proj
+
+ add your prettier rules here in this file
+ {
+  "semi": true,
+  "singleQuote": true,
+  "printWidth": 100,
+  "trailingComma": "all"
+}
+
+Step 3- update existing eslint.config.json file
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+import prettierPlugin from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist', 'coverage', 'build', 'node_modules']), //***add other folders which you want to ignore for linting
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs['recommended-latest'],
+      reactRefresh.configs.vite,
+      prettierConfig,              //**** Disable rules that conflict with Prettier
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+    plugins: {
+      prettier: prettierPlugin,    //*****
+    },
+    rules: {
+      'prettier/prettier': 'error', // **** Show Prettier issues as ESLint errors
+    },
+  },
+])
+
+Step 5 - Now ESLint will report Prettier issues in the terminal or editor.
+Add these scripts in package.json
+{
+  "format": "prettier --write .",
+  "lint:fix": "npm run lint -- --fix && npm run format",
+  "check:format": "prettier --check ."
+}
+
+Now run -
+npm run lint //check issues in prettier and linting as we merged prettier in eslint.config file
+npm run lint:fix  //to fix and format
+npm run check:format   //Check if files are formatted (CI safe)
+npm run format  // to format
+
+Step 6 - add .prettierignore file to skip formatting for certain files/folders.
+This tells Prettier what not to format. It's like .gitignore, but for Prettier.
+Add any folders here which you want to ignore for formatting-
+
+node_modules
+dist
+build
+coverage
+*.log
+.env
+
+
+******* setup prettier in vscode *******
+install prettier - code formatter extention
+
+ctrl + shift + P --> here search 'open user settings (json)' --> in this file add -
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+Now click on bottom settings btn --> settings --> click on format on save here
+
+
+
+
+
