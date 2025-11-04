@@ -1,5 +1,6 @@
 import { defineConfig } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths";
+import path from "path";
 
 export default defineConfig({
   test: {
@@ -23,4 +24,11 @@ export default defineConfig({
     },
   },
   plugins: [tsconfigPaths()], // add if using path-alias in ts.config.json else not req
+  resolve: {
+    alias: {
+      "@styles": path.resolve(__dirname, "./src/styles"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@utils": path.resolve(__dirname, "./src/utils"), //instead of './src/utils/file.tsx, you can use @utils/file.tsx
+    },
+  },
 });

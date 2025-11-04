@@ -4,7 +4,38 @@ import Button from '../../../../components/ui/Button'
 in much cleaner way -
 import Button from '@components/ui/Button'
 
-## Option 1- Use vite-tsconfig-paths ##
+## Option 1- set alias manually ##
+
+step 1- in vite.config.json
+  export default defineConfig({
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, './src/components/file.tsx'),  //so instead of './src/components/file.tsx, you can use @component
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+      //add more paths if you want to add more path alias
+    },
+  },
+  )}
+
+Step 2- Add same in vitest config if you have seperate vitest.config file
+
+Step 3- Add in paths in tsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"], //so instead of './src/components, you can use @component
+      "@utils/*": ["src/utils/*"],           //instead of './src/utils, you can use @utils
+      "@assets/*": ["src/assets/*"]          //instead of './src/assetss, you can use @assets
+      //add more paths if you want to add more path alias
+    }
+  }
+}
+
+
+## Option 2 - Use vite-tsconfig-paths ##
+Done this setup but not working
 
 step 1-
 npm install vite-tsconfig-paths --save-dev
@@ -26,36 +57,6 @@ step 3- in ts.config.json add those aliases which you want to configure
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
       "@assets/*": ["src/assets/*"]
-    }
-  }
-}
-
-
-## Option 2- set alias manually ##
-
-step 1- in vite.config.json
-  export default defineConfig({
-  resolve: {
-    alias: {
-      '@components': path.resolve(__dirname, './src/components'),
-      '@utils': path.resolve(__dirname, './src/utils'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      //add more paths if you want to add more path alias
-    },
-  },
-  )}
-
-Step 2- Add same in vitest config if you have seperate vitest.config file
-
-Step 3- Add in paths in tsconfig.json
-{
-  "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@components/*": ["src/components/*"], //so instead of './src/components, you can use @component
-      "@utils/*": ["src/utils/*"],           //instead of './src/utils, you can use @utils
-      "@assets/*": ["src/assets/*"]          //instead of './src/assetss, you can use @assets
-      //add more paths if you want to add more path alias
     }
   }
 }

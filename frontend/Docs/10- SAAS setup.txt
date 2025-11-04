@@ -1,0 +1,72 @@
+Step 1- npm i sass-embedded
+
+Step 2- Add src/styles folder - in here
+
+Step 3 - add global.scss file 
+
+Step 4- add variables.scss file
+
+Step 5 - in vite.config.ts file , add this -
+ css: {
+    preprocessorOptions: {
+      scss: {
+        // This injects variables and mixins into every .scss file
+        additionalData: `
+          @import "./src/styles/variables.scss";
+          @import "./src/styles/mixins.scss";
+        `,
+      },
+    },
+  },
+
+  OR
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // This injects variables and mixins into every .scss file
+        additionalData: `
+          @use "/src/styles/variables.scss" as *;
+        `,
+      },
+    },
+  },
+
+  After this setup, we need not to import variables in each and every file like below
+  @use "../../../styles/variables.scss" as mixins // not required due to vite setup
+  then use it like below in your css file-
+  color: $color-bg-default  // if vite setup not done, then use  mixin.$bg-color
+
+  How to use queries 
+{
+   background-color: $color-bg-default;
+   @include tablet {
+    background-color: green;   // this means on tablet screen size, bg color will change to green
+   }
+   @include desktop {
+    background-color: red;   // can use any variable colors here
+   }
+}
+
+**************** Examples - how to use inside your component.scss file ******************
+.container {
+  @include flex-center; // ✅ Works automatically
+  background-color: $color-primary; // ✅ Works automatically
+}
+.button {
+  @include flex-center;     //from mixin
+  background-color: $color-primary;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  @include transition(background-color, 0.5s, ease); //time and ease has default values in mixin so can skip
+
+  &:hover {
+    background-color: darken($color-primary, 8%);
+  }
+}
+  
+

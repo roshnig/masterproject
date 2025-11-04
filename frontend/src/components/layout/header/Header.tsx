@@ -1,11 +1,16 @@
 import { Link } from "react-router";
+import styles from "./Header.module.scss";
 
 const Header = () => {
   return (
     <header>
-      <nav style={{ display: "flex", justifyContent: "space-around" }}>
-        <Link to='/'>Home</Link>
-        <Link to='/login'>Login</Link>
+      <nav className={styles.headerNav}>
+        <Link to='/' className={styles.headerLink}>
+          Home
+        </Link>
+        <Link to='/login' className={styles.headerLink}>
+          Login
+        </Link>
       </nav>
     </header>
   );

@@ -1,0 +1,5 @@
+********* material ui icons **********
+ npm install @mui/icons-material
+
+ just import icon in component 
+ 

@@ -1,0 +1,57 @@
+//colors
+// Primary palette (keep in sync with MUI)
+$color-primary: #1976d2;
+$color-secondary: #ff4081;
+
+// Backgrounds
+$color-bg-default: #f5f6fa;
+$color-bg-paper: #ffffff;
+
+// Text
+$color-text-primary: #1a1a1a;
+$color-text-secondary: #555555;
+
+//******** Common sizing and layout  *******//
+$border-radius: 8px;
+
+//******* mixins for screen sizes *********//
+$small-width: 450px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$desktoplg-width: 1200px;
+
+@mixin small {
+  @media (min-width: #{$small-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$desktoplg-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktoplg {
+  @media (min-width: #{$desktoplg-width}) {
+    @content;
+  }
+}
+
+//  Common Mixins
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($property, $time: 0.2s, $ease: ease-in-out) {
+  transition: $property $time $ease;
+}

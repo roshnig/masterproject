@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: prod # use "dev" if you want to run npm run dev instead
+    ports:
+      - "3000:80" # app accessible at http://localhost:3000
+    # depends_on:
+    #   - backend
+    restart: always
+
+  # frontend: # Not working in dev mode as some more setup required
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #     target: dev
+  #   ports:
+  #     - "5173:5173" # app accessible at http://localhost:5173
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   # depends_on:
+  #   #   - backend
+  #   restart: always
+
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #     target: prod # optional if your Dockerfile supports multi-stage
+  #   ports:
+  #     - "8000:8000" # API accessible at http://localhost:8000
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+  #   restart: always
