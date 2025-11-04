@@ -1,11 +1,38 @@
-//import { render } from "@testing-library/react"; //test will fail as we are using react-router for this component
+// //import { render } from "@testing-library/react"; //test will fail as we are using react-router for this component
+// import { renderWithProviders } from "../../../tests/test-utils"; // use this render which has memory router
+// import Header from "./Header";
+
+// describe("Header test", () => {
+//   it("should render Header component", () => {
+//     // render(<Header />);  //will fail as this components need BrowserProvider
+//     renderWithProviders(<Header />); //will pass, using MemoryRouter
+//     expect(true).toBeTruthy();
+//   });
+// });
+
+import { fireEvent, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../../tests/test-utils"; // use this render which has memory router
 import Header from "./Header";
 
-describe("Header test", () => {
+describe("App component", () => {
   it("should render Header component", () => {
-    // render(<Header />);  //will fail as this components need BrowserProvider
     renderWithProviders(<Header />); //will pass, using MemoryRouter
     expect(true).toBeTruthy();
+  });
+
+  it("toggles between light and dark mode", () => {
+    renderWithProviders(<Header />, { mode: "light" });
+
+    // Initially light mode
+    const root = document.querySelector("[data-theme]");
+    expect(root).toHaveAttribute("data-theme", "light");
+
+    const toggleButton = screen.getByTestId("theme-toggle");
+    expect(toggleButton.querySelector("svg")).toBeTruthy(); // icon exists
+
+    fireEvent.click(toggleButton);
+
+    // After toggle → dark mode
+    expect(root).toHaveAttribute("data-theme", "dark");
   });
 });

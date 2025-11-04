@@ -1,8 +1,10 @@
 .headerNav {
   display: flex;
   justify-content: space-around;
+  background-color: black;
+  padding: 10px;
 }
 
 .headerLink {
-  color: $color-text-secondary;
+  color: $color-link;
 }

@@ -1,3 +1,28 @@
+/* Global styles for UKIC theme */
+:root {
+  //light theme
+  --ic-primary: #0066cc;
+  --ic-secondary: #ff4081;
+  --ic-background: #f5f5f5;
+  --ic-surface: #ffffff;
+  --ic-text: #0d0d0d;
+}
+// [data-theme="light"] {
+//   --ic-primary: #0066cc;
+//   --ic-secondary: #ff4081;
+//   --ic-background: #f5f5f5;
+//   --ic-surface: #ffffff;
+//   --ic-text: #0d0d0d;
+// }
+
+[data-theme="dark"] {
+  --ic-primary: #90caf9;
+  --ic-secondary: #f48fb1;
+  --ic-background: #121212;
+  --ic-surface: #1d1d1d;
+  --ic-text: #ffffff;
+}
+
 /**** Basic css reset *****/
 *,
 *::before,
@@ -10,4 +35,5 @@
 html,
 body {
   height: 100%;
+  font-family: "Roboto", sans-serif;
 }
