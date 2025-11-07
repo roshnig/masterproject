@@ -1,0 +1,53 @@
+//How to use - in your component scss file
+//   {
+//     width: 100vw;
+//     @include flex-center;
+//     @include tablet {
+//        background-color: green;   // this means on tablet screen size, bg color will change to green
+//     }
+//    @include desktop {
+//         background-color: red;   // can use any variable colors here
+//     }
+//   }
+
+//******* mixins for screen sizes *********//
+$small-width: 450px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$desktoplg-width: 1200px;
+
+@mixin small {
+  @media (min-width: #{$small-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$desktoplg-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktoplg {
+  @media (min-width: #{$desktoplg-width}) {
+    @content;
+  }
+}
+
+//  Common Mixins
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($property, $time: 0.2s, $ease: ease-in-out) {
+  transition: $property $time $ease;
+}

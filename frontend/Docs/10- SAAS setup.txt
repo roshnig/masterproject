@@ -2,40 +2,30 @@ Step 1- npm i sass-embedded
 
 Step 2- Add src/styles folder - in here
 
-Step 3 - add global.scss file 
+Step 3 - add index.scss file and 
+a reset.scss file (resets default styles. add this in main tsx)
 
-Step 4- add variables.scss file
+Step 4- add _variables.scss, _mixins, colours.scss files
 
 Step 5 - in vite.config.ts file , add this -
- css: {
-    preprocessorOptions: {
-      scss: {
-        // This injects variables and mixins into every .scss file
-        additionalData: `
-          @import "./src/styles/variables.scss";
-          @import "./src/styles/mixins.scss";
-        `,
-      },
-    },
-  },
-
-  OR
-
-  css: {
+css: {
     preprocessorOptions: {
       scss: {
         // This injects variables and mixins into every .scss file
         additionalData: `
           @use "/src/styles/variables.scss" as *;
+           @use "/src/styles/colors.scss" as *;
+            @use "/src/styles/mixins.scss" as *;
+             @use "/src/styles/index.scss" as *;
         `,
       },
     },
   },
 
-  After this setup, we need not to import variables in each and every file like below
-  @use "../../../styles/variables.scss" as mixins // not required due to vite setup
-  then use it like below in your css file-
-  color: $color-bg-default  // if vite setup not done, then use  mixin.$bg-color
+  After this setup, we need not to import variables, mixins, colors in each and every file like below
+  @use "../../../styles/variables.scss" as vars // not required due to vite setup
+  we can use them directly use it like below in your css file-
+  color: $color-bg-default  // if vite setup not done, then use  vars.$bg-color
 
   How to use queries 
 {

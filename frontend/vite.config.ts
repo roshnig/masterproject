@@ -20,6 +20,9 @@ export default defineConfig({
         // This injects variables and mixins into every .scss file
         additionalData: `
           @use "/src/styles/variables.scss" as *;
+           @use "/src/styles/colors.scss" as *;
+            @use "/src/styles/mixins.scss" as *;
+             @use "/src/styles/index.scss" as *;
         `,
       },
     },

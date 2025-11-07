@@ -46,6 +46,11 @@ export const AppThemeProvider = ({
           primary: colors.textPrimary,
           secondary: colors.textSecondary,
         },
+        // tonalOffset: 0, //tonal offset shifts the luminance in dark mode. by default it is 0.2
+        // tonalOffset: {
+        //   light: 0.1,
+        //   dark: 0.9,
+        // },
       },
       typography: {
         fontFamily: "Roboto, 'Open Sans', sans-serif",
