@@ -11,7 +11,7 @@
 // });
 
 import { fireEvent, screen } from "@testing-library/react";
-import { renderWithProviders } from "../../../tests/test-utils"; // use this render which has memory router
+import { renderWithProviders } from "../../../../tests/test-utils"; // use this render which has memory router
 import Header from "./Header";
 
 describe("App component", () => {

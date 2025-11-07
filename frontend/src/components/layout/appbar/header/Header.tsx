@@ -1,23 +1,3 @@
-// import { Link } from "react-router";
-// import styles from "./Header.module.scss";
-
-// const Header = () => {
-//   return (
-//     <header>
-//       <nav className={styles.headerNav}>
-//         <Link to='/' className={styles.headerLink}>
-//           Home
-//         </Link>
-//         <Link to='/login' className={styles.headerLink}>
-//           Login
-//         </Link>
-//       </nav>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
 // TopBar.tsx
 import { useContext } from "react";
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
@@ -25,7 +5,7 @@ import {
   LightMode as LightModeIcon,
   DarkMode as DarkModeIcon,
 } from "@mui/icons-material";
-import { ThemeContext } from "../../../providers/themeContext";
+import { ThemeContext } from "../../../../providers/themeContext";
 
 const Header = () => {
   const { mode, toggleMode } = useContext(ThemeContext);
