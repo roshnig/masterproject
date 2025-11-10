@@ -8,7 +8,6 @@ import ICSidebar from "./components/layout/ukicSidebar/ICSidebar";
 import AppLayout from "./components/layout/appbar/AppLayout"; // just topbar
 import Layout from "./components/layout/muiBarWithTopSideNav/Layout"; //mui layout with sidebar and topbar
 
-import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/products/Products"));
@@ -20,13 +19,9 @@ const AppRoutes = () => {
     <Routes>
       {/* We can have multiple route layouts here */}
 
-      {/* <Route element={<AppLayout />}>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-      </Route> */}
-
-      {/* <Route path='/' element={<Layout />}> */}
-      <Route path='/' element={<ICSidebar />}>
+      {/* <Route path='/' element={<AppLayout />}> */}
+      <Route path='/' element={<Layout />}>
+        {/* <Route path='/' element={<ICSidebar />}> */}
         <Route
           index
           element={

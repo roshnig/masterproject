@@ -9,3 +9,5 @@ Step 1- add ukic-mock.tsx fileHere I am mocking 2 items as of now from ukic libr
 
  Step 2 - add mock file in testutils
  import './mocks/ukic-mock';
+
+ Step 3- Now write tests as normal

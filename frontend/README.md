@@ -3,11 +3,10 @@
 ## Layout for app
 
 I have created 3 heders or appbar. to test each of these --> open routes.tsx file
-1- Simple headbar - uncomment line 22-25 and comment line 27-60. this one doesn't have any routing setup yet.
-2- MUI sidebar and top header both - comment line 22-25 and uncomment line 28-62. and then just comment line 29 and
-line 28 should be uncommented (where element=Layout).
-3- UKICSidebar - comment line 22-25 and uncomment line 28-62. and then just comment line 28 and
-line 29 should be uncommented ( where element = ICSidebar).
+1- Simple headbar - uncomment line 22 and comment line 23-24. this one doesn't have any btns on bar for navigation.
+for testing, just change routes in browser eg - /products, /sales etc. or add btns in navbar
+2- MUI sidebar and top header both - comment line 22 and 24 and uncomment line 23. (where element=Layout). Now you will see this layout component with appbar and sidebar.
+3- UKICSidebar - comment line 22-23 and uncomment line 24. ( where element = ICSidebar). Now you will see sidebar navigation.
 
 ## React Compiler
 
