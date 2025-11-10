@@ -1,11 +1,9 @@
-import {
-  AccountTreeOutlined,
-  type SvgIconComponent,
-} from "@mui/icons-material";
+import { type SvgIconComponent } from "@mui/icons-material";
 
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import AccountTreeOutlined from "@mui/icons-material/AccountTreeOutlined";
 
 export interface SidebarItems {
   label: string;

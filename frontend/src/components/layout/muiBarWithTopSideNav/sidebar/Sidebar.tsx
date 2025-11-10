@@ -63,7 +63,7 @@ const Sidebar = ({ open, handleDrawerClose }: SidebarProps) => {
     <Drawer variant='permanent' open={open} data-testid='drawer'>
       <DrawerHeader>
         <Tooltip title='Close Menu' placement='bottom'>
-          <IconButton onClick={handleDrawerClose} aria-label='close menu'>
+          <IconButton onClick={handleDrawerClose} aria-label='close drawer'>
             <ChevronLeftIcon />
           </IconButton>
         </Tooltip>
