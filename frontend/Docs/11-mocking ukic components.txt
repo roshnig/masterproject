@@ -1,0 +1,11 @@
+we are going to mock ukic component for testing. add more components in tests/ukic-mock.tsx file as required
+https://design.sis.gov.uk/components
+
+
+# Add tests/mocks folder
+Step 1- add ukic-mock.tsx fileHere I am mocking 2 items as of now from ukic library
+ - IcSideNavigation
+ - ICNavigationItem
+
+ Step 2 - add mock file in testutils
+ import './mocks/ukic-mock';

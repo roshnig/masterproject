@@ -1,8 +1,13 @@
 # React + TypeScript + Vite
 
+## Layout for app
+
 I have created 3 heders or appbar. to test each of these --> open routes.tsx file
-1- Simple headbar - uncomment line 22-25 and comment line 27-60
-2- MUI sidebar and top header both - comment line 22-25 and uncomment line 27-60
+1- Simple headbar - uncomment line 22-25 and comment line 27-60. this one doesn't have any routing setup yet.
+2- MUI sidebar and top header both - comment line 22-25 and uncomment line 28-62. and then just comment line 29 and
+line 28 should be uncommented (where element=Layout).
+3- UKICSidebar - comment line 22-25 and uncomment line 28-62. and then just comment line 28 and
+line 29 should be uncommented ( where element = ICSidebar).
 
 ## React Compiler
 

@@ -1,14 +1,15 @@
 import { Route, Routes } from "react-router";
 import { lazy, Suspense } from "react";
 
+import NotFound from "./pages/NotFound";
+
+import Loader from "./components/ui/loader/Loader";
+import ICSidebar from "./components/layout/ukicSidebar/ICSidebar";
 import AppLayout from "./components/layout/appbar/AppLayout"; // just topbar
 import Layout from "./components/layout/muiBarWithTopSideNav/Layout"; //mui layout with sidebar and topbar
 
-import NotFound from "./pages/NotFound";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import Loader from "./components/ui/loader/Loader";
-
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/products/Products"));
 const Sales = lazy(() => import("./pages/sales/Sales"));
@@ -24,7 +25,8 @@ const AppRoutes = () => {
         <Route path='/login' element={<Login />} />
       </Route> */}
 
-      <Route path='/' element={<Layout />}>
+      {/* <Route path='/' element={<Layout />}> */}
+      <Route path='/' element={<ICSidebar />}>
         <Route
           index
           element={
