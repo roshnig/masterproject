@@ -2,11 +2,11 @@
 
 ## Layout for app
 
-I have created 3 heders or appbar. to test each of these --> open routes.tsx file
-1- Simple headbar - uncomment line 22 and comment line 23-24. this one doesn't have any btns on bar for navigation.
-for testing, just change routes in browser eg - /products, /sales etc. or add btns in navbar
-2- MUI sidebar and top header both - comment line 22 and 24 and uncomment line 23. (where element=Layout). Now you will see this layout component with appbar and sidebar.
-3- UKICSidebar - comment line 22-23 and uncomment line 24. ( where element = ICSidebar). Now you will see sidebar navigation.
+LOGIN PAGE - PublicLayout - using simple topbar
+APPLayouts - 2 designs
+A- UKIC sidenavigation - if want to test this layout - uncomment line 31-37 in ProtectedLayout.tsx file
+and comment lines 22-29
+B- Mui mini drawer version - which has header and side navigation both. currently using
 
 ## React Compiler
 

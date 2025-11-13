@@ -1,11 +1,12 @@
 import Box from "@mui/material/Box";
 import { useState } from "react";
-import Header from "./header/Header";
-import Sidebar from "./sidebar/Sidebar";
 import Toolbar from "@mui/material/Toolbar";
 import { Outlet } from "react-router";
+import Header from "../components/layout/header/Header";
+import Sidebar from "../components/layout/sidebar/Sidebar";
+//import SideNavigation from "../components/layout/ukicSidebar/ICSidebar";
 
-export default function MiniDrawer() {
+export default function ProtectedLayout() {
   //const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -26,5 +27,13 @@ export default function MiniDrawer() {
         <Outlet />
       </Box>
     </Box>
+
+    // <Box sx={{ display: "flex" }}>
+    //   <SideNavigation />
+    //   <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+    //     <Toolbar />
+    //     <Outlet />
+    //   </Box>
+    // </Box>
   );
 }

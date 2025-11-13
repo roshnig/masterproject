@@ -13,8 +13,11 @@ import {
 
 import { drawerWidth } from "../sidebar/DrawerStyles";
 import { styled } from "@mui/material/styles";
-import { Avatar, Tooltip } from "@mui/material";
+import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 import { Link } from "react-router";
+import { ThemeContext } from "../../../providers/themeContext";
+import { useContext, useState } from "react";
+import { useAuth } from "../../../context/AuthContext";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -49,7 +52,19 @@ interface HeaderProps {
 }
 
 const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
-  const mode = "light";
+  const { handleLogout } = useAuth();
+  const { mode, toggleMode } = useContext(ThemeContext);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    handleLogout();
+    setAnchorElUser(null);
+  };
+
   return (
     <AppBar position='fixed' open={open}>
       <Toolbar>
@@ -84,11 +99,9 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
                   src='./org-logo.jpg'
                   alt='org logo'
                   data-testid='org-logo'
-                  style={{
-                    width: 48,
-                    height: 48,
-                    marginTop: "10px",
-                  }}
+                  width='38'
+                  height='38'
+                  style={{ marginTop: "8px", objectFit: "contain" }}
                 />
               </Link>
             </Tooltip>
@@ -103,11 +116,47 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
               }
               placement='bottom'
             >
-              <IconButton color='inherit' aria-label='toggle theme button'>
+              <IconButton
+                color='inherit'
+                aria-label='toggle theme button'
+                onClick={toggleMode}
+              >
                 {mode === "light" ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Tooltip>
-            <Avatar alt='user' src='./user.jpg' data-testid='user-img' />
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title='Open settings'>
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0 }}
+                  aria-label='user menu'
+                  color='inherit'
+                >
+                  <Avatar alt='user' src='./user.jpg' data-testid='user-img' />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id='menu-appbar'
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+                  <Typography sx={{ textAlign: "center" }}>Logout</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
           </Box>
         </Box>
       </Toolbar>

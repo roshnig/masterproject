@@ -1,14 +1,9 @@
 import { Button, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-//import { IcButton } from "@ukic/react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-//import { lightColors, darkColors } from "../../styles/colors";
 
-const Login = () => {
-  const { handleLogin } = useAuth();
+const SignUp = () => {
   const navigate = useNavigate();
-
   return (
     <Box
       sx={{
@@ -20,7 +15,7 @@ const Login = () => {
       }}
     >
       <Typography variant='h6' noWrap component='div'>
-        Welcome To My org!
+        Sign Up Form
       </Typography>
       <Box
         sx={{
@@ -31,23 +26,13 @@ const Login = () => {
           marginTop: 3,
         }}
       >
-        <Button
-          variant='contained'
-          onClick={handleLogin}
-          aria-label='Login Button'
-        >
-          Login
-        </Button>
-        <Button
-          variant='contained'
-          onClick={() => navigate("/signup")}
-          aria-label='SignUp Button'
-        >
-          Sign Up
+        <Button variant='contained'>Sign Up</Button>
+        <Button variant='contained' onClick={() => navigate("/login")}>
+          Back To Login
         </Button>
       </Box>
     </Box>
   );
 };
 
-export default Login;
+export default SignUp;

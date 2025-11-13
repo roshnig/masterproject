@@ -64,17 +64,17 @@ const SideNavigation: FC = () => {
     </IcSideNavigation>
   );
 };
-//export default SideNavigation;
+export default SideNavigation;
 
 //we are returning layout itself which contains above sidebar
-export default function ICSidebar() {
-  return (
-    <Box sx={{ display: "flex" }}>
-      <SideNavigation />
-      <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-        <Outlet />
-      </Box>
-    </Box>
-  );
-}
+// export default function ICSidebar() {
+//   return (
+//     <Box sx={{ display: "flex" }}>
+//       <SideNavigation />
+//       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+//         <Toolbar />
+//         <Outlet />
+//       </Box>
+//     </Box>
+//   );
+// }
