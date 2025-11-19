@@ -22,12 +22,20 @@ css: {
     },
   },
 
-  After this setup, we need not to import variables, mixins, colors in each and every file like below
+Step 6-  Add component.module.scss file. and add your styles here.
+  After above setup, we need not to import variables, mixins, colors in each and every scss file like below
   @use "../../../styles/variables.scss" as vars // not required due to vite setup
-  we can use them directly use it like below in your css file-
+  we can use them directly use it like below in your scss file-
   color: $color-bg-default  // if vite setup not done, then use  vars.$bg-color
 
-  How to use queries 
+Step 7- use scss file styles in component -
+
+  import styles from scss file like below -
+  import styles from "./component.module.scss";
+  then add class names like this-
+   className={styles.icNavItem}
+
+Step 8-   How to use queries 
 {
    background-color: $color-bg-default;
    @include tablet {
