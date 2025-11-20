@@ -55,15 +55,8 @@ export const renderWithProviders = (
     { path: "/signup", element: <PublicRoute>{ui}</PublicRoute> },
   ];
 
-  function applyTheme(theme: "light" | "dark") {
-    if (theme === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-    }
-  }
-  applyTheme(theme);
   localStorage.setItem("theme", theme);
+  document.documentElement.setAttribute("data-theme", "dark");
 
   const router = createMemoryRouter(routes, {
     initialEntries: [route],

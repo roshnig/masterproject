@@ -6,12 +6,15 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()], //allow us to use shorter path names during import. add path alias in ts.config.json file
-  base: "/",
   resolve: {
     alias: {
-      "@styles": path.resolve(__dirname, "./src/styles"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@utils": path.resolve(__dirname, "./src/utils"), //instead of './src/utils/file.tsx, you can use @utils/file.tsx
+      "@": path.resolve(__dirname, "src"),
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@context": path.resolve(__dirname, "src/context"),
+      "@types": path.resolve(__dirname, "src/types"),
+      "@utils": path.resolve(__dirname, "src/utils"), //instead of './src/utils/file.tsx, you can use @utils/file.tsx
     },
   },
   css: {
