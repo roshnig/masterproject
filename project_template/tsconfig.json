@@ -8,14 +8,15 @@
     "types": ["vitest/globals", "@testing-library/jest-dom"],
     "baseUrl": "./", //this is baseUrl for all below mentioned paths
     "paths": {
-      //option 1
+      "@/*": ["src/*"],
       "@components/*": ["src/components/*"], //so instead of './src/components, you can use @component
       "@utils/*": ["src/utils/*"], //instead of './src/utils, you can use @utils
-      "@assets/*": ["src/assets/*"] //instead of './src/assetss, you can use @assets
+      "@assets/*": ["src/assets/*"], //instead of './src/assetss, you can use @assets
+      "@hooks/*": ["src/hooks/*"],
+      "@context/*": ["src/context/*"],
+      "@styles/*": ["src/styles/*"],
+      "@types/*": ["src/types/*"]
       //add more paths if you want to add more path alias
-
-      //option 2
-      //"@/*": ["src/*"]
     }
   }
 }

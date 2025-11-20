@@ -10,9 +10,13 @@ step 1- in vite.config.json
   export default defineConfig({
   resolve: {
     alias: {
-      '@components': path.resolve(__dirname, './src/components/file.tsx'),  //so instead of './src/components/file.tsx, you can use @component
-      '@utils': path.resolve(__dirname, './src/utils'),
-      '@assets': path.resolve(__dirname, './src/assets'),
+      "@": path.resolve(__dirname, "src"),
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@context": path.resolve(__dirname, "src/context"),
+      "@types": path.resolve(__dirname, "src/types"),
+      "@utils": path.resolve(__dirname, "src/utils"), //instead of './src/utils/file.tsx, you can use @utils/file.tsx
       //add more paths if you want to add more path alias
     },
   },
@@ -23,16 +27,26 @@ Step 2- Add same in vitest config if you have seperate vitest.config file
 Step 3- Add in paths in tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
+      "@/*": ["src/*"],
       "@components/*": ["src/components/*"], //so instead of './src/components, you can use @component
-      "@utils/*": ["src/utils/*"],           //instead of './src/utils, you can use @utils
-      "@assets/*": ["src/assets/*"]          //instead of './src/assetss, you can use @assets
+      "@utils/*": ["src/utils/*"], //instead of './src/utils, you can use @utils
+      "@assets/*": ["src/assets/*"], //instead of './src/assetss, you can use @assets
+      "@hooks/*": ["src/hooks/*"],
+      "@context/*": ["src/context/*"],
+      "@styles/*": ["src/styles/*"],
+      "@types/*": ["src/types/*"]
       //add more paths if you want to add more path alias
     }
   }
 }
 
+Step 4 - Add this line in tsconfig.app.json
+ "extends": "./tsconfig.json",
+ if you will not add this here, vs code intellisense will complain about it. so add this.
+
+ ******************************************
 
 ## Option 2 - Use vite-tsconfig-paths ##
 Done this setup but not working

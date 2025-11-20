@@ -26,9 +26,13 @@ export default defineConfig({
   plugins: [tsconfigPaths()], // add if using path-alias in ts.config.json else not req
   resolve: {
     alias: {
-      "@styles": path.resolve(__dirname, "./src/styles"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@utils": path.resolve(__dirname, "./src/utils"), //instead of './src/utils/file.tsx, you can use @utils/file.tsx
+      "@": path.resolve(__dirname, "src"),
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@context": path.resolve(__dirname, "src/context"),
+      "@types": path.resolve(__dirname, "src/types"),
+      "@utils": path.resolve(__dirname, "src/utils"), //instead of './src/utils/file.tsx, you can use @utils/file.tsx
     },
   },
 });
