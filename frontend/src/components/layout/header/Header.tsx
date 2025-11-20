@@ -14,9 +14,9 @@ import {
 import { drawerWidth } from "../sidebar/DrawerStyles";
 import { styled } from "@mui/material/styles";
 import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
-import { Link } from "react-router";
-import { ThemeContext } from "../../../providers/themeContext";
-import { useContext, useState } from "react";
+import { Link, useLocation } from "react-router";
+import { useTheme } from "../../../context/themeContext";
+import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 
 interface AppBarProps extends MuiAppBarProps {
@@ -53,7 +53,9 @@ interface HeaderProps {
 
 const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
   const { handleLogout } = useAuth();
-  const { mode, toggleMode } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
+  const { pathname } = useLocation();
+
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -61,11 +63,11 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
   };
 
   const handleCloseUserMenu = () => {
-    handleLogout();
     setAnchorElUser(null);
   };
 
   return (
+    // <AppBar position='fixed' open={open} sx={{boxShadow:0}}>
     <AppBar position='fixed' open={open}>
       <Toolbar>
         <Tooltip title='Open Menu' placement='bottom'>
@@ -93,7 +95,10 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Tooltip title='Back To Home' placement='bottom'>
+            <Tooltip
+              title={pathname === "/" ? "Home Page" : "Back To Home"}
+              placement='bottom'
+            >
               <Link to='/' style={{ color: "white" }}>
                 <img
                   src='./org-logo.jpg'
@@ -112,16 +117,17 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
             <Tooltip
               title={
-                mode === "light" ? "Toggle Dark Mode" : "Toggle Light Mode"
+                theme === "light" ? "Toggle Dark Mode" : "Toggle Light Mode"
               }
               placement='bottom'
             >
               <IconButton
                 color='inherit'
                 aria-label='toggle theme button'
-                onClick={toggleMode}
+                onClick={toggleTheme}
+                sx={{ color: "white" }}
               >
-                {mode === "light" ? <LightModeIcon /> : <DarkModeIcon />}
+                {theme === "light" ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Tooltip>
 
@@ -137,22 +143,17 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
+                sx={{ mt: 2 }}
                 id='menu-appbar'
                 anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+                <MenuItem
+                  key={"logout"}
+                  onClick={handleLogout}
+                  data-testid='logout-btn'
+                >
                   <Typography sx={{ textAlign: "center" }}>Logout</Typography>
                 </MenuItem>
               </Menu>

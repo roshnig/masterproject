@@ -3,7 +3,7 @@ import NotFound from "./NotFound";
 
 describe("NotFound routing", () => {
   it("renders NotFound when route not found", async () => {
-    const app = renderWithProviders(<NotFound />, {
+    renderWithProviders(<NotFound />, {
       route: "/ggoginvvbbjh",
       auth: { isAuthenticated: true },
     });

@@ -3,6 +3,7 @@ import {
   renderWithProviders,
   screen,
   fireEvent,
+  waitFor,
 } from "../../../tests/test-utils";
 import Header from "./Header";
 
@@ -29,16 +30,38 @@ describe("Header Test", () => {
     fireEvent.mouseOver(themeBtn);
     expect(await screen.findByText("Toggle Dark Mode")).toBeInTheDocument();
 
-    // Initially light mode
-    const root = document.querySelector("[data-theme]");
-    expect(root).toHaveAttribute("data-theme", "light");
+    await userEvent.click(themeBtn);
+    fireEvent.mouseOver(themeBtn);
+    expect(await screen.findByText("Toggle Light Mode")).toBeInTheDocument();
 
-    expect(themeBtn.querySelector("svg")).toBeTruthy(); // icon exists
+    // // Initially light mode
+    // const root = document.querySelector("[data-theme]");
+    // expect(root).toHaveAttribute("data-theme", "light");
 
-    fireEvent.click(themeBtn);
+    // expect(themeBtn.querySelector("svg")).toBeTruthy(); // icon exists
 
-    // After toggle → dark mode
-    expect(root).toHaveAttribute("data-theme", "dark");
+    // fireEvent.click(themeBtn);
+
+    // // After toggle → dark mode
+    // expect(root).toHaveAttribute("data-theme", "dark");
+  });
+
+  it("switches to dark theme", async () => {
+    renderWithProviders(<Header open={false} handleDrawerOpen={vi.fn()} />, {
+      theme: "dark", //passing dark theme here
+    });
+    const themeBtn = screen.getByLabelText("toggle theme button");
+    expect(themeBtn).toBeInTheDocument();
+
+    fireEvent.mouseOver(themeBtn);
+    expect(await screen.findByText("Toggle Light Mode")).toBeInTheDocument();
+
+    await userEvent.click(themeBtn);
+    fireEvent.mouseOver(themeBtn);
+    expect(await screen.findByText("Toggle Dark Mode")).toBeInTheDocument();
+
+    // const root = document.querySelector("[data-theme]");
+    // expect(root).toHaveAttribute("data-theme", "light");
   });
 
   it("opens sidebar when menu icon is clicked", async () => {
@@ -59,7 +82,19 @@ describe("Header Test", () => {
   });
 
   it("logout when user menu logout is clicked", async () => {
-    renderWithProviders(<Header open={false} handleDrawerOpen={vi.fn()} />);
+    // const mockFuncs = {
+    //   mockHandleLogout: vi.fn(),
+    // };
+
+    // const spy = vi.spyOn(mockFuncs, "mockHandleLogout");
+
+    renderWithProviders(<Header open={false} handleDrawerOpen={() => {}} />, {
+      route: "/",
+      auth: {
+        isAuthenticated: true,
+        // handleLogout: mockFuncs.mockHandleLogout,
+      },
+    });
     const userImg = screen.getByTestId("user-img");
     expect(userImg).toBeInTheDocument();
 
@@ -67,6 +102,10 @@ describe("Header Test", () => {
 
     const logoutItem = await screen.findByText(/logout/i);
     expect(logoutItem).toBeVisible();
-    userEvent.click(logoutItem);
+
+    await userEvent.click(logoutItem);
+    // expect(spy).toHaveBeenCalledOnce();
+    //expect(screen.queryByText(/logout/i)).not.toBeInTheDocument();
+    //await waitFor(() => expect(window.location.pathname).toBe("/login"));
   });
 });

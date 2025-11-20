@@ -9,6 +9,8 @@ export const openedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: "hidden",
+  backgroundColor: theme.palette.primary.main, //optional if you want side bar color same as topbar
+  color: "white", //optional if you want side bar color same as topbar, need to change text color to white
 });
 
 export const closedMixin = (theme: Theme): CSSObject => ({
@@ -21,4 +23,6 @@ export const closedMixin = (theme: Theme): CSSObject => ({
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
+  backgroundColor: theme.palette.primary.main, //optional if you want side bar color same as topbar
+  color: "white", //optional if you want side bar color same as topbar, need to change text color to white
 });

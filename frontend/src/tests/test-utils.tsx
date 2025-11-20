@@ -2,12 +2,11 @@ import { type ReactElement } from "react";
 import { render, type RenderOptions } from "@testing-library/react";
 import {
   createMemoryRouter,
-  MemoryRouter,
   RouterProvider,
   type MemoryRouterProps,
   type RouteObject,
 } from "react-router";
-import { AppThemeProvider } from "../providers/themeContext";
+import { ThemeProvider } from "../context/themeContext";
 import "./mocks/ukic-mock";
 import { ProtectedRoute, PublicRoute } from "../routes";
 import { AuthProvider } from "../context/AuthContext";
@@ -29,7 +28,7 @@ vi.mock("react-router", async () => {
 interface RenderWithProvidersOptions extends Omit<RenderOptions, "wrapper"> {
   route?: string; //initial route for memory router
   memoryRouterProps?: Omit<MemoryRouterProps, "children">;
-  mode?: "light" | "dark"; //theme mode for testing
+  theme?: "light" | "dark"; //theme mode for testing
   auth?: { isAuthenticated: boolean; handleLogout?: () => Promise<void> }; //add other authContext if required
 }
 
@@ -38,7 +37,7 @@ export const renderWithProviders = (
   {
     route = "/",
     memoryRouterProps,
-    mode,
+    theme = "light",
     auth = { isAuthenticated: true, handleLogout: mockHandleLogout },
     ...options
   }: RenderWithProvidersOptions = {},
@@ -56,17 +55,27 @@ export const renderWithProviders = (
     { path: "/signup", element: <PublicRoute>{ui}</PublicRoute> },
   ];
 
+  function applyTheme(theme: "light" | "dark") {
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+  }
+  applyTheme(theme);
+  localStorage.setItem("theme", theme);
+
   const router = createMemoryRouter(routes, {
     initialEntries: [route],
     ...options,
   });
 
   return render(
-    <AppThemeProvider initialMode={mode}>
-      <AuthProvider {...auth}>
+    <AuthProvider {...auth}>
+      <ThemeProvider>
         <RouterProvider router={router} />
-      </AuthProvider>
-    </AppThemeProvider>,
+      </ThemeProvider>
+    </AuthProvider>,
   );
 };
 

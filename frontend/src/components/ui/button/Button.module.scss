@@ -1,0 +1,12 @@
+.button {
+  background-color: var(--primary-main);
+  color: #fff;
+
+  &:hover {
+    background-color: var(--primary-dark);
+  }
+
+  &.light {
+    background-color: var(--primary-light);
+  }
+}

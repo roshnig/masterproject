@@ -1,33 +1,128 @@
-$background: #1e1e2f;
+$org-white: #fff7e6; //for people with eys problem
 
-// //colors
-// // Primary palette (keep in sync with MUI)
-// $color-primary: #1976d2;
-// $color-secondary: #ff4081;
+:root {
+  --primary-light: #64b5f6;
+  --primary-main: #2196f3;
+  --primary-dark: #1976d2;
+  --primary-contrastText: #fff;
+  --primary-selected: #6588b2; //not injected in muiThemeBuild function but going to use inside comp module scss or sx
 
-// // Backgrounds
-// $color-bg-default: #f5f6fa;
-// $color-bg-paper: #ffffff;
+  --secondary-light: #adb5bd;
+  --secondary-main: #6c757d;
+  --secondary-dark: #495057;
+  --secondary-contrastText: #fff;
 
-// // Text
-// $color-text-primary: #1a1a1a;
-// $color-text-secondary: #555555;
+  --success-light: #81c784;
+  --success-main: #4caf50;
+  --success-dark: #388e3c;
+  --success-contrastText: #fff;
 
-// //Link
-// $color-link: #fff;
+  --error-light: #e57373;
+  --error-main: #f44336;
+  --error-dark: #d32f2f;
+  --error-contrastText: #fff;
 
-// // Light theme colors
-// $color-primary-light: #0066cc;
-// $color-secondary-light: #ff4081;
-// $color-background-light: #f5f5f5;
-// $color-surface-light: #cd5a5a;
-// $color-text-primary-light: #0d0d0d;
-// $color-text-secondary-light: #333333;
+  --warning-light: #ffd54f;
+  --warning-main: #ffc107;
+  --warning-dark: #ffa000;
+  --warning-contrastText: #fff;
 
-// // Dark theme colors
-// $color-primary-dark: #90caf9;
-// $color-secondary-dark: #f48fb1;
-// $color-background-dark: #121212;
-// $color-surface-dark: #1d1d1d;
-// $color-text-primary-dark: #ffffff;
-// $color-text-secondary-dark: #bdbdbd;
+  --info-light: #64b5f6;
+  --info-main: #2196f3;
+  --info-dark: #1976d2;
+  --info-contrastText: #fff;
+
+  --background: #ffffff;
+
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-disabled: rgba(0, 0, 0, 0.38);
+
+  --action-active: rgba(0, 0, 0, 0.54);
+  --action-hover: rgba(0, 0, 0, 0.04);
+  --action-selected: rgba(0, 0, 0, 0.08);
+  --action-disabled: rgba(0, 0, 0, 0.26);
+  --action-disabledBackground: rgba(0, 0, 0, 0.12);
+  --action-focus: rgba(0, 0, 0, 0.12);
+
+  // UKIC default color overides either here or inside component module scss file
+  //https://design.sis.gov.uk/styles/colour
+
+  --ic-button-primary-background: var(--primary-main);
+  --ic-button-destructive-background: var(--error-main);
+
+  // --ukic-primary-color: var(--primary-main);
+  // --ukic-primary-light: var(--primary-light);
+  // --ukic-primary-dark: var(--primary-dark);
+
+  // --ukic-secondary-color: var(--secondary-main);
+  // --ukic-secondary-light: var(--secondary-light);
+  // --ukic-secondary-dark: var(--secondary-dark);
+
+  // --ukic-success-color: var(--success-main);
+  // --ukic-success-light: var(--success-light);
+  // --ukic-success-dark: var(--success-dark);
+
+  // --ukic-error-color: var(--error-main);
+  // --ukic-error-light: var(--error-light);
+  // --ukic-error-dark: var(--error-dark);
+
+  // --ukic-warning-color: var(--warning-main);
+  // --ukic-warning-light: var(--warning-light);
+  // --ukic-warning-dark: var(--warning-dark);
+
+  // --ukic-info-color: var(--info-main);
+  // --ukic-info-light: var(--info-light);
+  // --ukic-info-dark: var(--info-dark);
+
+  // --ukic-text-color: var(--text);
+  // --ukic-bg-color: var(--background);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary-light: #4dabf7;
+  --primary-main: #022b67;
+  // --primary-main: #007bff;
+  --primary-dark: #0060cc;
+  --primary-contrastText: #fff; //changed to white
+  --primary-selected: #6588b2; //not injected in muiThemeBuild function but going to use inside comp module scss or sx
+
+  --secondary-light: #495057;
+  --secondary-main: #212529;
+  --secondary-dark: #121416;
+  --secondary-contrastText: rgba(0, 0, 0, 0.87);
+
+  --success-light: #43a047;
+  --success-main: #4caf50;
+  --success-dark: #81c784;
+  --success-contrastText: rgba(0, 0, 0, 0.87);
+
+  --error-light: #e53935;
+  --error-main: #f44336;
+  --error-dark: #ef5350;
+  --error-contrastText: #fff; //changed to white rgba(0, 0, 0, 0.87);
+
+  --warning-light: #ffb300;
+  --warning-main: #ffc107;
+  --warning-dark: #ffd54f;
+  --warning-contrastText: rgba(0, 0, 0, 0.87);
+
+  --info-light: #1e88e5;
+  --info-main: #2196f3;
+  --info-dark: #64b5f6;
+  --info-contrastText: rgba(0, 0, 0, 0.87);
+
+  --background: #010f27;
+
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-disabled: rgba(255, 255, 255, 0.5);
+
+  --action-active: rgba(255, 255, 255, 0.54);
+  --action-hover: rgba(255, 255, 255, 0.08);
+  --action-selected: rgba(255, 255, 255, 0.08);
+  --action-disabled: rgba(255, 255, 255, 0.26);
+  --action-disabledBackground: rgba(255, 255, 255, 0.12);
+  --action-focus: rgba(255, 255, 255, 0.12);
+}

@@ -66,5 +66,17 @@ Step 8-   How to use queries
     background-color: darken($color-primary, 8%);
   }
 }
+
+
+************************ new ***********************
+
+ sx={{ 
+    justifyContent: open ? "initial" : "center", 
+    px: 2.5,
+    "&.Mui-selected": {
+         backgroundColor: 'var(--primary-selected)';  ///use inside sx
+        // color: 
+       } 
+    }}
   
 
