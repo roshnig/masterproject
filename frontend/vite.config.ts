@@ -27,4 +27,11 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    include: ["@mui/material", "@mui/icons-material"], //mui prod build optimization
+  },
+  build: {
+    target: "es2020",
+    chunkSizeWarningLimit: 1000,
+  },
 });

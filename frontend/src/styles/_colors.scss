@@ -48,35 +48,16 @@ $org-white: #fff7e6; //for people with eys problem
   // UKIC default color overides either here or inside component module scss file
   //https://design.sis.gov.uk/styles/colour
 
-  --ic-button-primary-background: var(--primary-main);
-  --ic-button-destructive-background: var(--error-main);
+  // --ic-button-primary-background: var(--primary-main);  //this will change only button color
+  // --ic-button-destructive-background: var(--error-main); //this will change only button color
+  // --ic-color-background-destructive-hover: var(--error-dark) // this will change dest hover color
 
-  // --ukic-primary-color: var(--primary-main);
-  // --ukic-primary-light: var(--primary-light);
-  // --ukic-primary-dark: var(--primary-dark);
-
-  // --ukic-secondary-color: var(--secondary-main);
-  // --ukic-secondary-light: var(--secondary-light);
-  // --ukic-secondary-dark: var(--secondary-dark);
-
-  // --ukic-success-color: var(--success-main);
-  // --ukic-success-light: var(--success-light);
-  // --ukic-success-dark: var(--success-dark);
-
-  // --ukic-error-color: var(--error-main);
-  // --ukic-error-light: var(--error-light);
-  // --ukic-error-dark: var(--error-dark);
-
-  // --ukic-warning-color: var(--warning-main);
-  // --ukic-warning-light: var(--warning-light);
-  // --ukic-warning-dark: var(--warning-dark);
-
-  // --ukic-info-color: var(--info-main);
-  // --ukic-info-light: var(--info-light);
-  // --ukic-info-dark: var(--info-dark);
-
-  // --ukic-text-color: var(--text);
-  // --ukic-bg-color: var(--background);
+  --ic-blue-800: var(--primary-main); // this will change primary blue color
+  --ic-blue-1100: var(--primary-dark); //will change button hover color
+  --ic-red-800: var(--error-main);
+  --ic-red-1100: var(--error-dark);
+  --ic-green-800: var(--success-main);
+  --ic-green-1100: var(--success-dark);
 }
 
 /* Dark Theme */

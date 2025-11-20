@@ -1,23 +1,26 @@
-import Box from "@mui/material/Box";
+import { drawerWidth } from "../sidebar/DrawerStyles";
+import { styled } from "@mui/material/styles";
+import { Link, useLocation } from "react-router";
+import { useTheme } from "../../../context/themeContext";
+import { useState } from "react";
+import { useAuth } from "../../../context/AuthContext";
+
 import MuiAppBar, {
   type AppBarProps as MuiAppBarProps,
 } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Tooltip from "@mui/material/Tooltip";
 import {
   LightMode as LightModeIcon,
   DarkMode as DarkModeIcon,
 } from "@mui/icons-material";
-
-import { drawerWidth } from "../sidebar/DrawerStyles";
-import { styled } from "@mui/material/styles";
-import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
-import { Link, useLocation } from "react-router";
-import { useTheme } from "../../../context/themeContext";
-import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;

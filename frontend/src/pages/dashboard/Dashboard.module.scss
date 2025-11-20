@@ -1,0 +1,9 @@
+.icBtn {
+  --ic-button-tertiary-text-active: var(
+    --warning-main
+  ); //will change tertiary button text color
+  --ic-button-tertiary-background-hover-active: var(
+    --warning-main
+  ); ////will change tertiary button on hover color
+  --ic-button-tertiary-text-hover-active: $org-white; // this will change text color to white on hover
+}

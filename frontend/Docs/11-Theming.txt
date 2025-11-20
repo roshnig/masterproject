@@ -1,0 +1,111 @@
+I want to use mui and ukic in my app. But both have diffrent colors for buttons and all. so i want to create a colors file where
+ i will add all the colors and mui theme and ukic components should be able to use those colors.
+
+ Step 1- added theme context in context/themeContext.tsx file. We can use this themeContext anywhere in app -
+ const { theme, toggleTheme } = useTheme();  //theme will give - light/dark. toggleTheme is func to switch theme.
+ 
+ Inside themecontext provider,  we are passing material ui theme provider where we need to pass muiTheme. 
+  <MuiThemeProvider theme={muiTheme}>
+  
+  Step 2- we are building this muiTheme in theme/muiTheme. we can add any colors here but colors are not static. we are reading
+  colors here from styles/colors.scss file. where we are adding colors for light and dark theme and reading those colors here.
+
+  we are defining colors in sepearte file so we can use them inside components like -
+
+   <ListItemButton
+                  selected={active}
+                  onClick={() => navigate(item.path)}
+                  sx={{
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                    "&.Mui-selected": {
+                      backgroundColor: "var(--primary-selected)",  //this will automatically work for light/dark theme.
+                    },
+                  }}
+
+    we can use these inside module files -
+
+     .iconColor {
+        color: var(--primary-contrastText); //light/dark theme color, chages as per theme
+       //color: $org-white;  // common color will be same for both theme
+      }
+
+
+##   ukic components styles can also use same color - 
+  https://design.sis.gov.uk/styles/colour
+   We can overwrite ukic color pallete in color.scss file -
+  
+  --ic-blue-800: var(--primary-main); // this will change primary blue color
+  --ic-blue-1100: var(--primary-dark); //will change button hover color
+  --ic-red-800: var(--error-main);
+  --ic-red-1100: var(--error-dark);
+  --ic-green-800: var(--success-main);
+  --ic-green-1100: var(--success-dark);
+
+   we can change ukic classes colors as well inside components module.scss file , like - read class names in dev tool
+   .icBtn{
+       --ic-button-tertiary-text-active: var(--primary-main); //will change tertiary button text color
+       --ic-button-tertiary-background-hover-active: var(--warning-main ); ////will change tertiary button on hover color
+       --ic-button-tertiary-text-hover-active: $org-white; // this will change text color to white on hover
+     }
+ then add icBtn class in your component
+
+
+step 3- added theme provider in testUtils. But as we are reading system theme color
+ const systemPref = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark": "light";
+ and on the basis of that muiTheme pallete will be created so we need to inject those muiTheme colors in root first.
+ so in setup file, either we will need to add colors manually like this -
+
+OPTION 1- 
+   const root = document.documentElement.style;
+    const cssVars = {
+      "--primary-light": "#64b5f6",
+      "--primary-main": "#2196f3",
+      "--primary-dark": "#1976d2",
+
+      "--secondary-light": "#adb5bd",
+      "--secondary-main": "#6c757d",
+      "--secondary-dark": "#495057",
+
+      "--success-light": "#81c784",
+      "--success-main": "#4caf50",
+      "--success-dark": "#388e3c",
+
+      "--error-light": "#e57373",
+      "--error-main": "#f44336",
+      "--error-dark": "#d32f2f",
+
+      "--warning-light": "#ffd54f",
+      "--warning-main": "#ffc107",
+      "--warning-dark": "#ffa000",
+
+      "--info-light": "#64b5f6",
+      "--info-main": "#2196f3",
+      "--info-dark": "#1976d2",
+
+      "--background": "#ffffff",
+      "--text": "#000000",
+    };
+
+    Object.entries(cssVars).forEach(([key, val]) => {
+      root.setProperty(key, val);   // for loop to add each color in test
+    });
+
+    
+OPTION 2- 
+    OR i have just created a utils function in utils/extractCssVars.ts. what it does, it reads colors.scss file and extarct colors
+    in an array of object like [{name: colorVal}]. 
+    Then in test setup file, we have used this util function here -
+
+  const colorsPath = path.resolve("src/styles/_colors.scss");  //filepath to pass in utils function
+  const cssVars = extractCssVars(colorsPath);   //here is utils function, giving colors in objects array
+
+  function applyCssVars(vars: Record<string, string>) {
+    const style = document.documentElement.style;
+    for (const [key, value] of Object.entries(vars)) {
+      style.setProperty(key, value);
+    }
+  }
+  applyCssVars(cssVars); // looping through array and returning value like this for each color - document.documentElement.style.setProperty('--primary', '#fff')
+
+**IMP** - if we will not inject these colors in document, then all tests will fail because we are giving theme provider in setup.

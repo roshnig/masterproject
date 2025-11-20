@@ -1,20 +1,10 @@
-//import { useContext } from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Box,
-  Container,
-} from "@mui/material";
-import {
-  LightMode as LightModeIcon,
-  DarkMode as DarkModeIcon,
-} from "@mui/icons-material";
-//import { ThemeContext } from "../../../providers/themeContext";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 
 const Appbar = () => {
-  //  const { mode, toggleMode } = useContext(ThemeContext);
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
@@ -42,14 +32,6 @@ const Appbar = () => {
           >
             MY APP
           </Typography>
-
-          {/* <IconButton
-            color='inherit'
-            onClick={toggleMode}
-            data-testid='theme-toggle'
-          >
-            {mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
-          </IconButton> */}
         </Toolbar>
       </Container>
     </AppBar>

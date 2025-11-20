@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { IcButton } from "@ukic/react";
+import styles from "./Dashboard.module.scss";
 
 const Dashboard = () => {
   return (
@@ -18,6 +19,10 @@ const Dashboard = () => {
       <Stack spacing={2} direction='row'>
         <IcButton variant='primary'>Contained</IcButton>
         <IcButton variant='destructive'>Error</IcButton>
+        <IcButton variant='tertiary' className={styles.icBtn}>
+          Custom Styles
+        </IcButton>
+        <IcButton variant='tertiary'>Original</IcButton>
       </Stack>
     </Box>
   );

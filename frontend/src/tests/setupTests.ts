@@ -46,38 +46,38 @@ beforeAll(() => {
    * if you will not add that color then all your tests will fail.
    */
 
-  //   const root = document.documentElement.style;
+  // const root = document.documentElement.style;
 
-  //   const cssVars = {
-  //     "--primary-light": "#64b5f6",
-  //     "--primary-main": "#2196f3",
-  //     "--primary-dark": "#1976d2",
+  // const cssVars = {
+  //   "--primary-light": "#64b5f6",
+  //   "--primary-main": "#2196f3",
+  //   "--primary-dark": "#1976d2",
 
-  //     "--secondary-light": "#adb5bd",
-  //     "--secondary-main": "#6c757d",
-  //     "--secondary-dark": "#495057",
+  //   "--secondary-light": "#adb5bd",
+  //   "--secondary-main": "#6c757d",
+  //   "--secondary-dark": "#495057",
 
-  //     "--success-light": "#81c784",
-  //     "--success-main": "#4caf50",
-  //     "--success-dark": "#388e3c",
+  //   "--success-light": "#81c784",
+  //   "--success-main": "#4caf50",
+  //   "--success-dark": "#388e3c",
 
-  //     "--error-light": "#e57373",
-  //     "--error-main": "#f44336",
-  //     "--error-dark": "#d32f2f",
+  //   "--error-light": "#e57373",
+  //   "--error-main": "#f44336",
+  //   "--error-dark": "#d32f2f",
 
-  //     "--warning-light": "#ffd54f",
-  //     "--warning-main": "#ffc107",
-  //     "--warning-dark": "#ffa000",
+  //   "--warning-light": "#ffd54f",
+  //   "--warning-main": "#ffc107",
+  //   "--warning-dark": "#ffa000",
 
-  //     "--info-light": "#64b5f6",
-  //     "--info-main": "#2196f3",
-  //     "--info-dark": "#1976d2",
+  //   "--info-light": "#64b5f6",
+  //   "--info-main": "#2196f3",
+  //   "--info-dark": "#1976d2",
 
-  //     "--background": "#ffffff",
-  //     "--text": "#000000",
-  //   };
+  //   "--background": "#ffffff",
+  //   "--text": "#000000",
+  // };
 
-  //   Object.entries(cssVars).forEach(([key, val]) => {
-  //     root.setProperty(key, val);
-  //   });
+  // Object.entries(cssVars).forEach(([key, val]) => {
+  //   root.setProperty(key, val);
+  // });
 });

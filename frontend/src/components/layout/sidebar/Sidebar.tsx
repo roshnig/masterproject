@@ -9,11 +9,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Tooltip from "@mui/material/Tooltip";
 
 import { drawerWidth, closedMixin, openedMixin } from "./DrawerStyles";
 import { SidebarItems as menuItems } from "./SidebarItems";
 import { useLocation, useNavigate } from "react-router";
-import { Tooltip } from "@mui/material";
 import { createElement } from "react";
 import styles from "./Sidebar.module.scss";
 
