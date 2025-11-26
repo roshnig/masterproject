@@ -18,7 +18,7 @@ export default defineConfig({
         "dist/",
         "coverage/",
         "src/tests/setupTests.ts",
-        "./eslint.config.ts",
+        "./eslint.config.js",
         "./vite.config.ts",
         "./vitest.config.ts",
       ],
