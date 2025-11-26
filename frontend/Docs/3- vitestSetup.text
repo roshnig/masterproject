@@ -43,6 +43,9 @@ npm install -D vitest jsdom @testing-library/react @testing-library/jest-dom @te
 # add coverage folder inside gitignore and with other build/test ignore files
    coverage/
 
+#  Added below line in vitest config beacuse of timed out tests but not good
+pool: "forks", // default is thread but some of my tests were being timedout so added this - take long time to run tests
+
 
 ************** Optional - Add src/tests/ test-utils file **************
 when we have router, theme providers etc. we will require a utils file for tests.

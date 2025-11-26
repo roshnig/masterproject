@@ -5,6 +5,7 @@ import path from "path";
 export default defineConfig({
   test: {
     globals: true,
+    pool: "forks", // default is thread but some of my tests were being timedout so added this - take long time to run tests
     environment: "jsdom",
     setupFiles: "./src/tests/setupTests.ts",
     include: ["src/**/*.{test,spec}.{js,ts,jsx,tsx}"],
