@@ -3,9 +3,11 @@ import Box from "@mui/material/Box";
 //import { IcButton } from "@ukic/react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import usePageMeta from "@/hooks/usePageMeta";
 //import { lightColors, darkColors } from "../../styles/colors";
 
 const Login = () => {
+  usePageMeta({ title: "My Org Login", description: "My Org Login" });
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 

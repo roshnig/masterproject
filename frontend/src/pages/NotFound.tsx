@@ -1,7 +1,9 @@
+import usePageMeta from "@/hooks/usePageMeta";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const NotFound = () => {
+  usePageMeta({ title: "Not Found", description: "Not found" });
   return (
     <Box
       sx={{

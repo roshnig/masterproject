@@ -1,6 +1,7 @@
-import React from "react";
+import usePageMeta from "@/hooks/usePageMeta";
 
 const Home = () => {
+  usePageMeta({ title: "My Org home", description: "My Org home" });
   return <div>Hello from home</div>;
 };
 

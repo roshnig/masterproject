@@ -1,8 +1,10 @@
+import usePageMeta from "@/hooks/usePageMeta";
 import { Button, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router";
 
 const SignUp = () => {
+  usePageMeta({ title: "My Org Signup", description: "My Org Signup" });
   const navigate = useNavigate();
   return (
     <Box

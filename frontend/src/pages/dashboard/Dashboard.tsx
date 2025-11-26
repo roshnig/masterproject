@@ -3,8 +3,11 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { IcButton } from "@ukic/react";
 import styles from "./Dashboard.module.scss";
+import usePageMeta from "@/hooks/usePageMeta";
 
 const Dashboard = () => {
+  usePageMeta({ title: "My Org Dashboard", description: "My Org Dashboard" });
+
   return (
     <Box>
       <div style={{ paddingBottom: 20 }}>Dashboard page!</div>

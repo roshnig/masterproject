@@ -1,0 +1,22 @@
+# we can set meta data for each tab, which you will see in browser tab. Altough if we are using new react-router v7 in 
+framework mode, then it is not required as it has some built in functionality (google search Meta function in react router). 
+If not using framework mode, we can use this method.
+
+Below video is saying SEO - search engine optimisation but that is not true unless we will use SSR. but still it works
+for meta data setting of our pages.
+
+https://www.youtube.com/watch?v=qQmiyia9ds0
+
+Title will be displayed in browser tab. remaining things should display when you will search app in google, and you see
+search results - what info will be displayed there in search listing, can be set here in description and other things.
+
+Step 1- We have created a hook inside hooks/usePageMeta.
+
+Step 2- we will use this hook to setup metadata for each page inside our pages/ *.tsx files
+
+in dashboard page -
+usePageMeta({ title: "My Org Dashboard", description: "My Org Dashboard" });
+Or
+usePageMeta() // if you want to use default title/desc
+
+set metadata for each page in your app
