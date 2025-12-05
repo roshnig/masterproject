@@ -46,6 +46,9 @@ npm install -D vitest jsdom @testing-library/react @testing-library/jest-dom @te
 #  Added below line in vitest config beacuse of timed out tests but not good
 pool: "forks", // default is thread but some of my tests were being timedout so added this - take long time to run tests
 
+Removed above line but added this -
+ testTimeout: 10000, //imp because sometimes longer tests fails
+
 
 ************** Optional - Add src/tests/ test-utils file **************
 when we have router, theme providers etc. we will require a utils file for tests.
