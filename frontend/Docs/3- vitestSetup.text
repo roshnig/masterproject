@@ -57,3 +57,16 @@ otherwise tests will fail. here we will setup
 - wraps components in theme context (Appthemeprovider) so light/dark mode works in tests.
 - mockNavigate allows you to verify calls to useNavigate
 - supports setting an initial route via route option
+
+
+**************** hide console.logs in tests ****************
+we have a setupTests.ts file inside tests folder. here add -
+
+ global.console = {
+    ...console,
+    log: vi.fn(),   //will hide any console.logs
+    debug: vi.fn(),
+    info: vi.fn(),
+   // warn: vi.fn(),  //should not hide
+   // error: vi.fn()   // we should not hide errors, so we can fix them
+  }

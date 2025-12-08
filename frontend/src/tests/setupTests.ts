@@ -3,6 +3,7 @@ import { cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import path from "path";
 import { extractCssVars } from "@utils/extractCssVars";
+import "@/tests/mocks/amplifyMock"
 
 afterEach(() => {
   cleanup();
@@ -10,20 +11,6 @@ afterEach(() => {
 });
 
 beforeAll(() => {
-  Object.defineProperty(window, "matchMedia", {
-    writable: true,
-    value: (query: string) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: () => {},
-      removeListener: () => {},
-      addEventListener: () => {},
-      removeEventListener: () => {},
-      dispatchEvent: () => false,
-    }),
-  });
-
   //inject CSS variables before mui theme is created.
   const colorsPath = path.resolve("src/styles/_colors.scss");
   const cssVars = extractCssVars(colorsPath);
@@ -81,3 +68,26 @@ beforeAll(() => {
   //   root.setProperty(key, val);
   // });
 });
+
+ Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    }),
+  });
+
+  global.console = {
+    ...console,
+    log: vi.fn(),   //will hide any console.logs
+    debug: vi.fn(),
+    info: vi.fn(),
+   // warn: vi.fn(),  //should not hide
+   // error: vi.fn()   // we should not hide errors, so we can fix them
+  }

@@ -1,3 +1,8 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 @use "./colors" as *;
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #121212 inset !important;
+  -webkit-text-fill-color: white !important;
+}

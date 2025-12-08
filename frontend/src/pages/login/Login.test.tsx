@@ -6,6 +6,8 @@ import {
 import userEvent from "@testing-library/user-event";
 import Login from "./Login";
 
+vi.mock("@aws-amplify/auth");
+
 describe("Login tests", () => {
   it("renders login page when unauthenticated", async () => {
     const comp = renderWithProviders(<Login />, {

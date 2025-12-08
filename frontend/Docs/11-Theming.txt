@@ -109,3 +109,29 @@ OPTION 2-
   applyCssVars(cssVars); // looping through array and returning value like this for each color - document.documentElement.style.setProperty('--primary', '#fff')
 
 **IMP** - if we will not inject these colors in document, then all tests will fail because we are giving theme provider in setup.
+
+
+
+***************** change universal styles for components ***************
+in theme/muiTheme.ts , add -
+
+ components: {
+  // basically changing style for default input variant - filled
+       MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            borderBottomLeftRadius: 5,
+            borderBottomRightRadius: 5,
+            overflow:"hidden"
+          }
+        }
+      }
+    }
+
+    *******************
+in styles/index.css - added these lines to fix issue in dark mode- In dark mode, Chrome’s autofill turns inputs bright yellow → unreadable text.
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #121212 inset !important;
+  -webkit-text-fill-color: white !important;
+}

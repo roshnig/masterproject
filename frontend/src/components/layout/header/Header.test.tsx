@@ -7,6 +7,8 @@ import {
 } from "../../../tests/test-utils";
 import Header from "./Header";
 
+vi.mock("@aws-amplify/auth");
+
 describe("Header Test", () => {
   it("renders Header", () => {
     const header = renderWithProviders(

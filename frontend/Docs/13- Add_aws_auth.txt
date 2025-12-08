@@ -1,0 +1,60 @@
+//follow 
+
+https://www.youtube.com/watch?v=JujyvvZui3k
+
+Step 1- in your aws console, search for aws cognito
+
+ here create user pool, 
+ add app client
+ add users who can login (we have not added sign up so manually added users).
+
+Step 2- in .env file add these variables 
+
+VITE_API_BASE_URL=http://localhost:8000
+
+VITE_COGNITO_USER_POOL_ID="eu-west-2_s5o0jo97s"
+VITE_COGNITO_USER_POOL_CLIENT_ID="68akcffyttuytutuyytutuy"
+VITE_COGNITO_REDIRECT_URL="http://localhost:5173"
+VITE_COGNITO_LOGOUT_URL="http://localhost:5173/login"
+VITE_COGNITO_DOMAIN="eu-west-2s5o0jo97s.auth.eu-west-2.amazoncognito.com"
+
+Step 3- install
+
+npm i aws-amplify
+
+inside utils folder, add amplify.ts file
+
+Step 4- import this amplify.ts file in main.tsx
+
+Step 5- update context/AuthContext file for aws authentication and added authProvider in main.tsx file
+
+Step 6- Add login form in login page. Updated some styling for TextField variant = 'filled' styles in theme/muiTheme.ts
+Also updated some colors in styles/colors.ts file for dark theme
+in styles/index.css added below to fix input background issue in chrome in dark mode
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #121212 inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+
+Step 7 - in components/layout/header - updated logout function
+
+step 8 - in tests/mocks folder added amplifyMock.ts file for ignoring real amplify login in tests.
+   also added authWrapper here.
+
+   now import amplifyMock in setUp test file. so we will not get Amplify.configure error in tests. This will configure amplify with fake vars for tests.
+
+Step 9 - in vitest.config.ts added -
+server:{
+      deps: {
+        inline: ['aws-amplify', '@aws-amplify/auth']
+      }
+    },
+
+Step 10 - in header.test and in login.test where we are using amplify signin and signout methods, mock aws-amplify like below 
+
+Step 11 - next we are going to remove tests/test-utils file. instead of that we will create a testWrapper.tsx file which we will use for all tests.
+
+AS of now pending 
+
+

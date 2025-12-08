@@ -34,7 +34,7 @@ export default defineConfig({
     include: ["@mui/material", "@mui/icons-material"], //mui prod build optimization
   },
   build: {
-    target: "es2020",
+    target: "es2022",
     chunkSizeWarningLimit: 1000,
   },
 });

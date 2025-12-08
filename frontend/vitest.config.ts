@@ -9,6 +9,11 @@ export default defineConfig({
     testTimeout: 10000, //imp because sometimes longer tests fails
     environment: "jsdom",
     setupFiles: ["src/tests/setupTests.ts"],
+    server:{
+      deps: {
+        inline: ['aws-amplify', '@aws-amplify/auth']
+      }
+    },
     include: ["src/**/*.{test,spec}.{js,ts,jsx,tsx}"],
     // exclude: ['node_modules', 'dist', 'coverage', '.git'],
     coverage: {

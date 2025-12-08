@@ -62,7 +62,7 @@ $org-white: #fff7e6; //for people with eys problem
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --primary-light: #4dabf7;
+  --primary-light: #e3f2fd;
   --primary-main: #022b67;
   // --primary-main: #007bff;
   --primary-dark: #0060cc;
@@ -97,13 +97,13 @@ $org-white: #fff7e6; //for people with eys problem
   --background: #010f27;
 
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-secondary: #fff;
   --text-disabled: rgba(255, 255, 255, 0.5);
 
-  --action-active: rgba(255, 255, 255, 0.54);
+  --action-active: #fff;
   --action-hover: rgba(255, 255, 255, 0.08);
   --action-selected: rgba(255, 255, 255, 0.08);
-  --action-disabled: rgba(255, 255, 255, 0.26);
-  --action-disabledBackground: rgba(255, 255, 255, 0.12);
+  --action-disabled: rgba(255, 255, 255, 0.7);
+  --action-disabledBackground: rgba(163, 164, 168, 0.84);
   --action-focus: rgba(255, 255, 255, 0.12);
 }

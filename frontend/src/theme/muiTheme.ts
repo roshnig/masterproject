@@ -67,5 +67,44 @@ export function buildMuiTheme() {
         focus: getColor("--action-focus"),
       },
     },
+    components: {
+       MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            borderBottomLeftRadius: 5,
+            borderBottomRightRadius: 5,
+            overflow:"hidden"
+          }
+        }
+      },
+      // MuiTextField: {
+      //  styleOverrides: {
+      //   root: {
+      //     "--TextField-brandBorderColor": "#888",
+      //     "--TextField-brandBorderHoverColor": "#fff",
+      //     "--TextField-brandBorderFocusedColor": "#90caf9",
+
+      //     "& label": {
+      //       color: "#bbb"
+      //     },
+
+      //     "& input": {
+      //       color: "#fff"
+      //     },
+
+      //     "& label.Mui-focused": {
+      //       color: "#90caf9"
+      //     }
+      //   }
+      // }
+    //},
+    //   MuiOutlinedInput: {
+    //   styleOverrides: {
+    //     notchedOutline: {
+    //       borderColor: "#888"
+    //     }
+    //   }
+    // }
+    }
   });
 }

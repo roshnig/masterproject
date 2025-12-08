@@ -1,9 +1,9 @@
-import { drawerWidth } from "../sidebar/DrawerStyles";
+import { drawerWidth } from "@/components/layout/sidebar/DrawerStyles";
 import { styled } from "@mui/material/styles";
 import { Link, useLocation } from "react-router";
-import { useTheme } from "../../../context/themeContext";
+import { useTheme } from "@/context/themeContext";
 import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 
 import MuiAppBar, {
   type AppBarProps as MuiAppBarProps,
@@ -55,7 +55,7 @@ interface HeaderProps {
 }
 
 const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
-  const { handleLogout } = useAuth();
+  const { logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
 
@@ -68,6 +68,11 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const onLogout = async () => {
+    handleCloseUserMenu();
+    await logout()
+  }
 
   return (
     // <AppBar position='fixed' open={open} sx={{boxShadow:0}}>
@@ -154,7 +159,7 @@ const Header = ({ open, handleDrawerOpen }: HeaderProps) => {
               >
                 <MenuItem
                   key={"logout"}
-                  onClick={handleLogout}
+                  onClick={() => onLogout()}
                   data-testid='logout-btn'
                 >
                   <Typography sx={{ textAlign: "center" }}>Logout</Typography>
