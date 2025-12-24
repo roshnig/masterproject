@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 
+/******* NOT USING ************
+ * because after adding page data all tests were failing. I wasn't sure how to add meta in tests so removed from each page
+ * *****************/
 interface pageMetaProps {
   title?: string; //will display in browser tab
   description?: string; // will display in google serch result list desc
