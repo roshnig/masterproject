@@ -1,12 +1,14 @@
-import { renderWithProviders, screen } from "../../tests/test-utils";
+import { render, screen } from "@testing-library/react";
 import Dashboard from "./Dashboard";
+import { TestWrapper } from "@/tests/mocks/testWrapper";
 
 describe("Dashboard page", () => {
   it("renders Dashboard page", () => {
-    const comp = renderWithProviders(<Dashboard />, {
-      route: "/dashboard",
-      auth: { isAuthenticated: true },
-    });
+    const comp = render(
+      <TestWrapper route='/'>
+        <Dashboard />
+      </TestWrapper>,
+    );
     expect(comp).toBeTruthy();
     expect(screen.getByText("Dashboard page!")).toBeInTheDocument();
   });

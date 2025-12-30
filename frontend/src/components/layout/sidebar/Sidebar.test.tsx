@@ -1,28 +1,32 @@
-import {
-  renderWithProviders,
-  screen,
-  fireEvent,
-  mockNavigate,
-} from "../../../tests/test-utils";
-
+import { fireEvent, render, screen } from "@testing-library/react";
 import Sidebar from "./Sidebar";
+import { TestWrapper } from "@/tests/mocks/testWrapper";
 
-const mockFuncs = {
-  handleDrawerClose: vi.fn(),
-};
+const mockNavigate = vi.fn();
+vi.mock("react-router", async () => {
+  const actual = await vi.importActual("react-router");
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+    useLocation: () => vi.fn(),
+  };
+});
 
 describe("Sidebar Test", () => {
   it("renders Sidebar", () => {
-    const sidebar = renderWithProviders(
-      <Sidebar open={false} handleDrawerClose={mockFuncs.handleDrawerClose} />,
-      { route: "/" },
+    const sidebar = render(
+      <TestWrapper>
+        <Sidebar open={false} handleDrawerClose={() => {}} />
+      </TestWrapper>,
     );
     expect(sidebar).toBeTruthy();
   });
 
   it("navigates to selected route when a menu item is clicked", () => {
-    renderWithProviders(
-      <Sidebar open={false} handleDrawerClose={mockFuncs.handleDrawerClose} />,
+    render(
+      <TestWrapper>
+        <Sidebar open={true} handleDrawerClose={() => {}} />
+      </TestWrapper>,
     );
     const menuItem = screen.getByText("Products");
     fireEvent.click(menuItem);
@@ -30,8 +34,10 @@ describe("Sidebar Test", () => {
   });
 
   it("shows tooltips when collapsed", async () => {
-    renderWithProviders(
-      <Sidebar open={false} handleDrawerClose={mockFuncs.handleDrawerClose} />,
+    render(
+      <TestWrapper>
+        <Sidebar open={false} handleDrawerClose={() => {}} />
+      </TestWrapper>,
     );
     const menuItem = screen.getByLabelText("Products");
     fireEvent.mouseOver(menuItem);
@@ -39,11 +45,11 @@ describe("Sidebar Test", () => {
   });
 
   it(" closes sidebar when menu icon clicked", async () => {
-    // const spy = vi.spyOn(mockFuncs, "handleDrawerClose");
     const handleDrawerClose = vi.fn();
-    renderWithProviders(
-      // <Sidebar open={true} handleDrawerClose={mockFuncs.handleDrawerClose()} />,
-      <Sidebar open={true} handleDrawerClose={handleDrawerClose} />,
+    render(
+      <TestWrapper>
+        <Sidebar open={true} handleDrawerClose={handleDrawerClose} />
+      </TestWrapper>,
     );
     const menuBtn = screen.getByLabelText("close drawer");
     expect(menuBtn).toBeInTheDocument();
@@ -53,8 +59,66 @@ describe("Sidebar Test", () => {
 
     fireEvent.click(menuBtn);
     expect(handleDrawerClose).toHaveBeenCalled();
-    // expect(spy).toHaveBeenCalledOnce();
-
-    //expect(screen.queryByLabelText("open drawer")).not.toBeInTheDocument();
   });
 });
+
+// import {
+//   renderWithProviders,
+//   screen,
+//   fireEvent,
+//   mockNavigate,
+// } from "../../../tests/test-utils";
+
+// import Sidebar from "./Sidebar";
+
+// const mockFuncs = {
+//   handleDrawerClose: vi.fn(),
+// };
+
+// describe("Sidebar Test", () => {
+//   it("renders Sidebar", () => {
+//     const sidebar = renderWithProviders(
+//       <Sidebar open={false} handleDrawerClose={mockFuncs.handleDrawerClose} />,
+//       { route: "/" },
+//     );
+//     expect(sidebar).toBeTruthy();
+//   });
+
+//   it("navigates to selected route when a menu item is clicked", () => {
+//     renderWithProviders(
+//       <Sidebar open={false} handleDrawerClose={mockFuncs.handleDrawerClose} />,
+//     );
+//     const menuItem = screen.getByText("Products");
+//     fireEvent.click(menuItem);
+//     expect(mockNavigate).toHaveBeenCalledWith("/products");
+//   });
+
+//   it("shows tooltips when collapsed", async () => {
+//     renderWithProviders(
+//       <Sidebar open={false} handleDrawerClose={mockFuncs.handleDrawerClose} />,
+//     );
+//     const menuItem = screen.getByLabelText("Products");
+//     fireEvent.mouseOver(menuItem);
+//     expect(await screen.findByText("Products")).toBeInTheDocument();
+//   });
+
+//   it(" closes sidebar when menu icon clicked", async () => {
+//     // const spy = vi.spyOn(mockFuncs, "handleDrawerClose");
+//     const handleDrawerClose = vi.fn();
+//     renderWithProviders(
+//       // <Sidebar open={true} handleDrawerClose={mockFuncs.handleDrawerClose()} />,
+//       <Sidebar open={true} handleDrawerClose={handleDrawerClose} />,
+//     );
+//     const menuBtn = screen.getByLabelText("close drawer");
+//     expect(menuBtn).toBeInTheDocument();
+
+//     fireEvent.mouseOver(menuBtn);
+//     expect(await screen.findByText("Close Menu")).toBeInTheDocument();
+
+//     fireEvent.click(menuBtn);
+//     expect(handleDrawerClose).toHaveBeenCalled();
+//     // expect(spy).toHaveBeenCalledOnce();
+
+//     //expect(screen.queryByLabelText("open drawer")).not.toBeInTheDocument();
+//   });
+// });
